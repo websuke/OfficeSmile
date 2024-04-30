@@ -14,15 +14,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .logout((logout) -> logout.permitAll())                      // ログアウト処理のPOST /logout は認証無しでアクセス可能
-                .formLogin((form) -> form                                    // フォーム認証設定を開始する
-//                        .loginPage("/login")                               // SpringSecurityが用意しているデフォルトのログインページを使用するためコメントアウト
-                        .permitAll()                                         // 認証無しでアクセス可能
+                .logout((logout) -> logout.permitAll())                               // ログアウト処理のPOST /logout は認証無しでアクセス可能
+                .formLogin((form) -> form                                             // フォーム認証設定を開始する
+                        .loginPage("/login")                                          // ログインページ表示のためのハンドラーメソッドは GET /login
+                        .permitAll()                                                  // 認証無しでアクセス可能
                 )
-                .authorizeHttpRequests((requests) -> requests                // URL毎の認可設定を開始する
+                .authorizeHttpRequests((requests) -> requests                         // URL毎の認可設定を開始する
+                        .requestMatchers("css/**").permitAll()               // CSSへの認証も不要
                         .requestMatchers("/").permitAll()                    // "/" へはログインなしでもアクセス可能
                         .requestMatchers("/returning-to-works").permitAll()  // "/returning-to-works" へはログインなしでもアクセス可能
-                        .anyRequest().authenticated()                        // その他のURLへはログイン後アクセス可能
+                        .anyRequest().authenticated()                                 // その他のURLへはログイン後アクセス可能
                 );
 
 
