@@ -1,20 +1,26 @@
--- 認証テーブル
-INSERT INTO auths (auth_id, password) VALUES
-('1111', 'password'),
-('2222', 'password'),
-('3333', 'password');
-
 -- ユーザーテーブル
 INSERT INTO users (user_name) VALUES
 ('test1'),
 ('test2'),
 ('test3');
 
--- ユーザー×認証テーブル
-INSERT INTO user_auth (user_id, auth_id, role) VALUES
-(1 , '1111', 'GENERAL'),
-(2 , '2222', 'ADMIN'),
-(3 , '3333', 'SUPERUSER');
+-- 認証テーブル
+INSERT INTO auths (auth_id, user_id, password, authority) VALUES
+('1111', 1, 'password', 'GENERAL'),
+('2222', 2, 'password', 'ADMIN'),
+('3333', 3, 'password', 'SUPER_USER');
+
+-- ロールテーブル
+INSERT INTO roles (role_name) VALUES
+('不明'),
+('役職なし'),
+('部長');
+
+-- ユーザー×ロールテーブル
+INSERT INTO user_role (user_id, role_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 
 -- 理由概要テーブル
 INSERT INTO reason_summaries (reason_summary) VALUES
