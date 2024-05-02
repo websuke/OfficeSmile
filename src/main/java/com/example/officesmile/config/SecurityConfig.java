@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .formLogin((form) -> form                                             // フォーム認証設定を開始する
                         .loginPage("/login")                                          // ログインページ表示のためのハンドラーメソッドは GET /login
                         .defaultSuccessUrl("/")                                       // ログイン後のハンドラーメソッドは GET /
+                        .usernameParameter("authId")                                  // username -> authId に変更
                         .permitAll()                                                  // 認証無しでアクセス可能
                 )
                 .logout((logout) -> logout.permitAll())                               // ログアウト処理のPOST /logout は認証無しでアクセス可能
