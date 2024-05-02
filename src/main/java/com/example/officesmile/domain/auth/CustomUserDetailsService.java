@@ -1,24 +1,29 @@
 package com.example.officesmile.domain.auth;
 
+import com.example.officesmile.domain.entity.auth.AuthEntity;
+import com.example.officesmile.mapper.auth.AuthMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
-    private final AuthRepository authRepository;
+    private final AuthMapper authMapper;
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
-        return authRepository.findByAuthId(authId)
+        return Optional.ofNullable(authMapper.findByAuthId(authId))
                 .map(
                     auth ->
 //                            new CustomUserDetails(
@@ -35,7 +40,14 @@ public class CustomUserDetailsService implements UserDetailsService {
                 );
     }
 
-    private List<GrantedAuthority> toGrantedAuthority(Auth.Authority authority) {
+    private List<GrantedAuthority> toGrantedAuthority(AuthEntity.Authority authority) {
         return Collections.singletonList(new SimpleGrantedAuthority(authority.name()));
+    }
+
+    public class CustomUserDetails extends User {
+
+        public CustomUserDetails(String authId, String password, Collection<? extends GrantedAuthority> authorities) {
+            super(authId, password, authorities);
+        }
     }
 }

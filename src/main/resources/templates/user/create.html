@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>ログインページ</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<section class="text-gray-600 body-font relative">
+    <form th:action="@{/users}" method="post">
+        <div class="container py-24 mx-auto flex">
+            <div class="md:w-1/2 p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10">
+                <div class="relative mt-6">
+                    <label for="authId" class="leading-7 text-sm text-gray-600">ユーザーID</label>
+                    <input type="text" id="authId" name="authId" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mt-4">
+                    <label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
+                    <input type="password" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mt-4">
+                    <label for="userName" class="leading-7 text-sm text-gray-600">ユーザーネーム</label>
+                    <input type="text" id="userName" name="userName" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mt-4">
+                    <label for="authority" class="leading-7 text-sm text-gray-600">権限</label>
+                    <select name="authority" id="authority" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <option value="ADMIN">権限テスト</option>
+                    </select>
+                </div>
+                <div class="relative mt-4">
+                    <label for="role" class="leading-7 text-sm text-gray-600">役職</label>
+                    <select name="role" id="role" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <option value="1">役職テスト</option>
+                    </select>
+                </div>
+                <button class="text-white bg-indigo-500 border-0 py-2 w-1/3 mt-6 mx-auto px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">ユーザー登録</button>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>
