@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class Auth {
     private String authId;
-//    private String userId;
     private String password;
     private Authority authority;
 

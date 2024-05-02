@@ -1,14 +1,14 @@
--- ユーザーテーブル
-INSERT INTO users (user_name) VALUES
-('test1'),
-('test2'),
-('test3');
-
 -- 認証テーブル
-INSERT INTO auths (auth_id, user_id, password, authority) VALUES
-('1111', 1, 'password', 'GENERAL'),
-('2222', 2, 'password', 'ADMIN'),
-('3333', 3, 'password', 'SUPER_USER');
+INSERT INTO auths (auth_id, password, authority) VALUES
+('1111', 'password', 'GENERAL'),
+('2222', 'password', 'ADMIN'),
+('3333', 'password', 'SUPER_USER');
+
+-- ユーザーテーブル
+INSERT INTO users (user_name, auth_id) VALUES
+('test1', '1111'),
+('test2', '2222'),
+('test3', '3333');
 
 -- ロールテーブル
 INSERT INTO roles (role_name) VALUES
