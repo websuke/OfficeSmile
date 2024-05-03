@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -24,6 +26,9 @@ public class SecurityConfig {
                 .logout((logout) -> logout.permitAll())                               // ログアウト処理のPOST /logout は認証無しでアクセス可能
                 .authorizeHttpRequests((requests) -> requests                         // URL毎の認可設定を開始する
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // "/h2-console**" へはログインなしでもアクセス可能 ※開発環境のみとする必要あり
+
+                        .requestMatchers("/users/**").permitAll()
+
                         .requestMatchers("css/**").permitAll()               // CSSへの認証も不要
                         .anyRequest().authenticated()                                 // その他のURLへはログイン後アクセス可能
                 )
@@ -36,6 +41,11 @@ public class SecurityConfig {
 
 
         return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 }
 

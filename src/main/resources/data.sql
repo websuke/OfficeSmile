@@ -1,14 +1,17 @@
 -- 認証テーブル
 INSERT INTO auths (auth_id, password, authority) VALUES
-('1111', 'password', 'GENERAL'),
-('2222', 'password', 'ADMIN'),
-('3333', 'password', 'SUPER_USER');
+-- password
+('1111', '$100801$h0bJXCuEyGoc09W7AFNxmw==$L17E2eyODKwbLuknH+dnrBPtsl6ycXHPJURWgD/GU7k=', 'GENERAL'),
+('2222', '$100801$h0bJXCuEyGoc09W7AFNxmw==$L17E2eyODKwbLuknH+dnrBPtsl6ycXHPJURWgD/GU7k=', 'ADMIN'),
+('3333', '$100801$h0bJXCuEyGoc09W7AFNxmw==$L17E2eyODKwbLuknH+dnrBPtsl6ycXHPJURWgD/GU7k=', 'SUPER_USER'),
+('4444', '$100801$h0bJXCuEyGoc09W7AFNxmw==$L17E2eyODKwbLuknH+dnrBPtsl6ycXHPJURWgD/GU7k=', 'GENERAL');
 
 -- ユーザーテーブル
 INSERT INTO users (user_name, auth_id) VALUES
 ('test1', '1111'),
 ('test2', '2222'),
-('test3', '3333');
+('test3', '3333'),
+('test4', '4444');
 
 -- ロールテーブル
 INSERT INTO roles (role_name) VALUES
@@ -20,7 +23,8 @@ INSERT INTO roles (role_name) VALUES
 INSERT INTO user_role (user_id, role_id) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
+(3, 3),
+(4, 1);
 
 -- 理由概要テーブル
 INSERT INTO reason_summaries (reason_summary) VALUES
