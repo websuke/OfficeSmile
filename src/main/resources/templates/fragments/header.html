@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
 >
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
     <div class="flex justify-between w-1/2 mx-auto p-5">
         <div class="flex">
             <h1><a th:href="@{/}">OfficeSmile</a></h1>
-            <nav class="ml-10">
+            <nav class="ml-10" th:if="${#authorization.expression('isAuthenticated()')}">
                 <ul class="flex">
                     <li>
                         <a th:href="@{/}">
@@ -22,11 +23,18 @@
                             履歴
                         </a>
                     </li>
+                    <li class="ml-5" sec:authorize="hasAuthority('ADMIN') || hasAuthority('SUPER_USER')">
+                        <a href="">
+                            ユーザー作成
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
-        <div class="flex">
-            <span>名前</span>
+        <div class="flex" th:if="${#authorization.expression('isAuthenticated()')}">
+            <div th:text="${#authentication.name}">
+                The value of the "name" property of the authentication object should appear here.
+            </div>
             <form th:action="@{/logout}" method="post" class="ml-5">
                 <button>ログアウト</button>
             </form>
