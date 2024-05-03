@@ -9,6 +9,9 @@
 </head>
 <body>
 <section class="text-gray-600 body-font relative">
+    <div th:if="${param.error}" id="flashMessage" class="w-1/4 absolute -translate-x-1/2 inset-x-2/4 top-4">
+        <p class="bg-red-300 text-white rounded p-5 text-center">ログインIDまたはパスワードが違います。</p>
+    </div>
     <form th:action="@{/login}" method="post">
         <div class="container py-24 mx-auto flex">
             <div class="md:w-1/2 p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10">
@@ -25,5 +28,35 @@
         </div>
     </form>
 </section>
+<script>
+    const delay = 40; // fps=25
+
+    function fadeOut() {
+        return new Promise(async (resolve, reject) => {
+            if (arguments.length > 0) {
+                const elem = arguments[0];
+                if (elem.style.display !== 'none') {
+                    const duration = arguments.length === 2 ? arguments[1] : 500;
+
+                    const coef = 1 / (duration / delay);
+                    elem.style.opacity = 1.0;
+                    var opacity = Number(elem.style.opacity);
+                    var animation = setInterval(() => {
+                        opacity -= coef;
+                        elem.style.opacity = opacity;
+                        if (opacity <= 0) {
+                            elem.style.display = 'none';
+                            clearInterval(animation);
+                            resolve(true);
+                        }
+                    }, delay);
+                }
+            }
+        });
+    }
+
+    const elem = document.querySelector("#flashMessage");
+    fadeOut(elem, 5000);
+</script>
 </body>
 </html>

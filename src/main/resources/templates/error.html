@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error page</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
+</head>
+<body>
+<div class="text-center">
+    <h1 class="text-[min(13vw,130px)]" th:text="${status} + ' ' + ${error}"></h1>
+    <p>申し訳ございません。ページを表示できませんでした。</p>
+    <a th:href="@{/}" class="inline-block text-white bg-indigo-500 border-0 py-2 w-1/4 mt-6 mx-auto px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">トップページに戻る</a>
+</div>
+</body>
+</html>
