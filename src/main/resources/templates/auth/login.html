@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja"
       xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main}, ~{::script})}"
 >
 <head>
     <meta charset="UTF-8">
     <title>ログインページ</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}" />
 </head>
 <body>
-<section class="text-gray-600 body-font relative">
+<main>
     <div th:if="${param.error}" id="flashMessage" class="w-1/4 absolute -translate-x-1/2 inset-x-2/4 top-4">
         <p class="bg-red-300 text-white rounded p-5 text-center">ログインIDまたはパスワードが違います。</p>
     </div>
     <form th:action="@{/login}" method="post">
-        <div class="container py-24 mx-auto flex">
+        <div class="container mx-auto flex">
             <div class="md:w-1/2 p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10">
                 <div class="relative mt-6">
                     <label for="authId" class="leading-7 text-sm text-gray-600">ログインID</label>
@@ -27,7 +27,7 @@
             </div>
         </div>
     </form>
-</section>
+</main>
 <script>
     const delay = 40; // fps=25
 
