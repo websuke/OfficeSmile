@@ -11,20 +11,24 @@
     <div class="flex justify-between w-1/2 mx-auto p-5">
         <div class="flex">
             <h1><a th:href="@{/}">OfficeSmile</a></h1>
-            <nav class="ml-10" th:if="${#authorization.expression('isAuthenticated()')}">
+            <nav class="ml-10 text-gray-400" th:if="${#authorization.expression('isAuthenticated()')}">
                 <ul class="flex">
                     <li>
-                        <a th:href="@{/}">
+                        <a th:href="@{/}"
+                           th:classappend="${requestURI == '/returning-to-works' || requestURI == '/going-homes' || requestURI == '/sitemap'}
+                           ? text-slate-700
+                           : ''"
+                        >
                             トップ
                         </a>
                     </li>
                     <li class="ml-5">
-                        <a href="">
+                        <a href="" th:classappend="${requestURI == '/history'} ? text-slate-700 : ''">
                             履歴
                         </a>
                     </li>
                     <li class="ml-5" sec:authorize="hasAuthority('ADMIN') || hasAuthority('SUPER_USER')">
-                        <a href="../user/signup.html" th:href="@{/users/signup}">
+                        <a href="../user/signup.html" th:href="@{/users/signup}" th:classappend="${requestURI == '/users/signup'} ? text-slate-700 : ''">
                             ユーザー作成
                         </a>
                     </li>
