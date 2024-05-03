@@ -26,16 +26,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         return Optional.ofNullable(authMapper.findByAuthId(authId))
                 .map(
                     auth ->
-//                            new CustomUserDetails(
-//                                auth.getAuthId(),
-//                                auth.getPassword(),
-//                                toGrantedAuthority(auth.getAuthority())
-//                            )
-                            CustomUserDetails
-                                    .withUsername(auth.getAuthId())
-                                    .password("{noop}" + auth.getPassword())
-                                    .authorities(auth.getAuthority().name())
-                                    .build()
+                            new CustomUserDetails(
+                                auth.getAuthId(),
+                                auth.getPassword(),
+                                toGrantedAuthority(auth.getAuthority())
+                            )
                     ).orElseThrow(() -> new IllegalArgumentException("ユーザーがいない")
                 );
     }
