@@ -24,7 +24,7 @@
                         </a>
                     </li>
                     <li class="ml-5" sec:authorize="hasAuthority('ADMIN') || hasAuthority('SUPER_USER')">
-                        <a href="">
+                        <a href="../user/signup.html" th:href="@{/users/signup}">
                             ユーザー作成
                         </a>
                     </li>

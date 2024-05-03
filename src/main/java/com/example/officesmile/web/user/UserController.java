@@ -14,9 +14,9 @@ public class UserController {
 
     private final UserStoreUseCase userStoreUseCase;
 
-    @GetMapping("/create")
+    @GetMapping("/signup")
     public String create() {
-        return "/user/create";
+        return "/user/signup";
     }
 
     @PostMapping
@@ -24,6 +24,6 @@ public class UserController {
 
         userStoreUseCase.invoke(form.userName(), form.authId(), form.password(), form.authority(), form.role());
 
-        return "redirect:/users/create";
+        return "redirect:/users/signup";
     }
 }
