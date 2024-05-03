@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                                 auth.getPassword(),
                                 toGrantedAuthority(auth.getAuthority())
                             )
-                    ).orElseThrow(() -> new IllegalArgumentException("ユーザーがいない")
+                    ).orElseThrow(() -> new UsernameNotFoundException("ログインIDが誤っています。")
                 );
     }
 
