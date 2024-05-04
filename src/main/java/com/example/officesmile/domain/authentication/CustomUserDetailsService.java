@@ -1,4 +1,4 @@
-package com.example.officesmile.domain.auth;
+package com.example.officesmile.domain.authentication;
 
 import com.example.officesmile.Repository.dao.AuthDao;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.officesmile.config;
 
-import com.example.officesmile.domain.auth.CustomUserDetailsService;
+import com.example.officesmile.domain.authentication.CustomUserDetailsService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

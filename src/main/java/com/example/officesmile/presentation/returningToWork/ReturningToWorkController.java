@@ -1,6 +1,6 @@
 package com.example.officesmile.presentation.returningToWork;
 
-import com.example.officesmile.domain.auth.CustomUserDetailsService;
+import com.example.officesmile.domain.authentication.CustomUserDetailsService;
 import com.example.officesmile.domain.useCase.adminOrAbove.ReturningToWorkStoreUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

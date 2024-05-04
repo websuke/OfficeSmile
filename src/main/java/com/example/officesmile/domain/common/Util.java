@@ -1,6 +1,6 @@
 package com.example.officesmile.domain.common;
 
-import com.example.officesmile.domain.auth.CustomUserDetailsService;
+import com.example.officesmile.domain.authentication.CustomUserDetailsService;
 import jakarta.servlet.http.HttpSession;
 
 import java.time.LocalDateTime;
