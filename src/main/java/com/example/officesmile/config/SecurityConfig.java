@@ -1,5 +1,6 @@
 package com.example.officesmile.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +12,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomSuccessHandler successHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -19,7 +23,7 @@ public class SecurityConfig {
         http
                 .formLogin((form) -> form                                             // フォーム認証設定を開始する
                         .loginPage("/login")                                          // ログインページ表示のためのハンドラーメソッドは GET /login
-                        .defaultSuccessUrl("/")                                       // ログイン後のハンドラーメソッドは GET /
+                        .successHandler(successHandler)                               // ログイン後のハンドラーメソッドは強制的に GET /
                         .usernameParameter("authId")                                  // username -> authId に変更
                         .permitAll()                                                  // 認証無しでアクセス可能
                 )
