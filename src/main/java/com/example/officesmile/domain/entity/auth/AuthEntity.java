@@ -6,12 +6,12 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class AuthEntity {
-    private String authId;
+    private Long authId;
     private String password;
     private Authority authority;
-    private String userId;
+    private Long userId;
 
-    public static AuthEntity toEntity(String authId, String password, String authority, String userId) {
+    public static AuthEntity toEntity(Long authId, String password, String authority, Long userId) {
         return new AuthEntity(
                 authId,
                 password,

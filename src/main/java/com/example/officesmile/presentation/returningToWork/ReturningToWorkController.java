@@ -34,7 +34,7 @@ public class ReturningToWorkController {
     @PostMapping
     public String store(@SessionAttribute("loggedInUser") CustomUserDetailsService.CustomUserDetails loggedInUser,  @ModelAttribute ReturningToWorkForm form) {
 
-        returningToWorkStoreUseCase.invoke(form, loggedInUser.getUserId());
+        returningToWorkStoreUseCase.invoke(form.reasonSummaryId(), form.reasonDetail(), loggedInUser.getUserId());
 
         return "redirect:/going-home";
     }

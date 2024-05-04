@@ -28,8 +28,8 @@ public class UserStoreUseCase {
 
         Long maxUserId = userDao.getMaxUserId();
 
-        authDao.store(AuthEntity.toEntity(authId, encodedPassword, authority, maxUserId.toString()));
+        authDao.store(AuthEntity.toEntity(Long.parseLong(authId), encodedPassword, authority, maxUserId));
 
-        userRoleDao.store(UserRoleEntity.toEntity(maxUserId.toString(), roleId));
+        userRoleDao.store(UserRoleEntity.toEntity(maxUserId, Long.parseLong(roleId)));
     }
 }
