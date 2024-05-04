@@ -1,8 +1,8 @@
 package com.example.officesmile.presentation;
 
-import com.example.officesmile.domain.auth.CustomUserDetailsService;
+import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @GetMapping("/")
-    public String index() {
-        var principal = getPrincipal();
+    public String index(HttpSession session) {
+        var principal = Util.getLoggedInUser(session);
 
         // 管理者以上の場合
         if (principal.getAuthorities().equals(AuthEntity.Authority.SUPER_USER) || principal.getAuthorities().equals(AuthEntity.Authority.ADMIN)) {
@@ -27,12 +27,5 @@ public class IndexController {
 //        return 帰宅登録初期表示のメソッド
     }
 
-    /**
-     * ログインユーザーの主要情報取得
-     *
-     * @return
-     */
-    private CustomUserDetailsService.CustomUserDetails getPrincipal() {
-        return (CustomUserDetailsService.CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+
 }
