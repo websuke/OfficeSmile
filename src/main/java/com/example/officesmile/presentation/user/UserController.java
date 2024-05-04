@@ -1,4 +1,4 @@
-package com.example.officesmile.web.user;
+package com.example.officesmile.presentation.user;
 
 import com.example.officesmile.domain.useCase.adminOrAbove.UserStoreUseCase;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.officesmile.web.returningToWork;
+package com.example.officesmile.presentation.returningToWork;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

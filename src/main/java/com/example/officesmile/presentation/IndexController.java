@@ -1,4 +1,4 @@
-package com.example.officesmile.web;
+package com.example.officesmile.presentation;
 
 import com.example.officesmile.domain.entity.auth.AuthEntity;
 import org.springframework.security.core.context.SecurityContextHolder;

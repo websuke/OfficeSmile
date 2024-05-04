@@ -1,4 +1,4 @@
-package com.example.officesmile.web.advice;
+package com.example.officesmile.presentation.advice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.example.officesmile.web.user;
+package com.example.officesmile.presentation.user;
 
 public record UserForm (
         String authId,
