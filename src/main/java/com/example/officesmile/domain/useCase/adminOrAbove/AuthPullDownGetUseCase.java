@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 権限プルダウン取得シナリオ
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthPullDownGetUseCase {

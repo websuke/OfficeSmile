@@ -11,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * ユーザー登録シナリオ
+ */
 @Service
 @RequiredArgsConstructor
 public class UserStoreUseCase {

@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * 役職プルダウン取得シナリオ
+ */
 @Service
 @RequiredArgsConstructor
 public class RolePullDownGetUseCase {
