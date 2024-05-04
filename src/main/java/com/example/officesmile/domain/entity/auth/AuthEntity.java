@@ -21,8 +21,18 @@ public class AuthEntity {
     }
 
     public enum Authority {
-        GENERAL,
-        ADMIN,
-        SUPER_USER
+        GENERAL("一般"),
+        ADMIN("管理者"),
+        SUPER_USER("スーパーユーザー");
+
+        private final String name;
+
+        private Authority(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
     }
 }
