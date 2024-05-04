@@ -61,5 +61,17 @@ public class CustomUserDetailsService implements UserDetailsService {
             this.userName = userName;
             this.roleName = roleName;
         }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public String getRoleName() {
+            return roleName;
+        }
     }
 }

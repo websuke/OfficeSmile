@@ -36,8 +36,8 @@
             </nav>
         </div>
         <div class="flex" th:if="${#authorization.expression('isAuthenticated()')}">
-            <div th:text="${#authentication.name}">
-                The value of the "name" property of the authentication object should appear here.
+            <div th:text="${session.loggedInUser.userId + ' : ' + session.loggedInUser.userName}">
+                (ユーザーID : ユーザー名)
             </div>
             <form th:action="@{/logout}" method="post" class="ml-5">
                 <button>ログアウト</button>

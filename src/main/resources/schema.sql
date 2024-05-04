@@ -37,7 +37,7 @@ CREATE TABLE reason_summaries(
 CREATE TABLE returning_to_works(
     returning_to_work_id BIGSERIAL PRIMARY KEY,
     reason_summary_id BIGINT NOT NULL,
-    reason_details TEXT,
+    reason_detail TEXT,
     date_time DATETIME,
     user_id BIGINT NOT NULL,
     FOREIGN KEY (reason_summary_id) REFERENCES reason_summaries(reason_summary_id),

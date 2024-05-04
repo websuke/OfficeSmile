@@ -34,7 +34,7 @@ INSERT INTO reason_summaries (reason_summary) VALUES
 ('その他');
 
 -- 帰社テーブル
-INSERT INTO returning_to_works (reason_summary_id, reason_details, date_time, user_id) VALUES
+INSERT INTO returning_to_works (reason_summary_id, reason_detail, date_time, user_id) VALUES
 (1, 'xxさんとの面談', '2024-04-21 17:00:05', 1),
 (2, 'カリキュラム学習', '2024-04-22 17:00:05', 2),
 (3, null, '2024-04-23 17:00:05', 3),
