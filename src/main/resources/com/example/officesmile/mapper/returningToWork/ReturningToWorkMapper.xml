@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.officesmile.mapper.ReturningToWork.ReturningToWorkMapper">
+<mapper namespace="com.example.officesmile.mapper.returningToWork.ReturningToWorkMapper">
     <!-- 帰社登録 -->
     <insert id="store" parameterType="com.example.officesmile.domain.entity.returningToWork.ReturningToWorkEntity">
         INSERT INTO returning_to_works (
