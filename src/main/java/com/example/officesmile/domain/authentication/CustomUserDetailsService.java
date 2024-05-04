@@ -1,6 +1,6 @@
 package com.example.officesmile.domain.authentication;
 
-import com.example.officesmile.Repository.dao.AuthDao;
+import com.example.officesmile.infrastructure.dao.AuthDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

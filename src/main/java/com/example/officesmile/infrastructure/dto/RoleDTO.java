@@ -1,4 +1,4 @@
-package com.example.officesmile.Repository.dto;
+package com.example.officesmile.infrastructure.dto;
 
 public record RoleDTO(
         String roleId,

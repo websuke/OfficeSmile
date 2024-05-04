@@ -1,8 +1,8 @@
 package com.example.officesmile.domain.useCase.adminOrAbove;
 
-import com.example.officesmile.Repository.dao.ReturningToWorkDao;
 import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.entity.returningToWork.ReturningToWorkEntity;
+import com.example.officesmile.infrastructure.dao.ReturningToWorkDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

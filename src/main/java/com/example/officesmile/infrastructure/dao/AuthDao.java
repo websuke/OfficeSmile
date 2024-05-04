@@ -1,7 +1,7 @@
-package com.example.officesmile.Repository.dao;
+package com.example.officesmile.infrastructure.dao;
 
-import com.example.officesmile.Repository.dto.UserDTO;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
+import com.example.officesmile.infrastructure.dto.UserDTO;
 import com.example.officesmile.mapper.auth.AuthMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

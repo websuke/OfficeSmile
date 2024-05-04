@@ -1,7 +1,7 @@
 package com.example.officesmile.mapper.auth;
 
-import com.example.officesmile.Repository.dto.UserDTO;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
+import com.example.officesmile.infrastructure.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

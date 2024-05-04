@@ -1,7 +1,7 @@
 package com.example.officesmile.domain.useCase.adminOrAbove;
 
-import com.example.officesmile.Repository.dao.AuthDao;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
+import com.example.officesmile.infrastructure.dao.AuthDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

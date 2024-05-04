@@ -1,4 +1,4 @@
-package com.example.officesmile.Repository.dao;
+package com.example.officesmile.infrastructure.dao;
 
 import com.example.officesmile.domain.entity.userRole.UserRoleEntity;
 import com.example.officesmile.mapper.userRole.UserRoleMapper;
