@@ -24,6 +24,6 @@ public class UserController {
 
         userStoreUseCase.invoke(form.userName(), form.authId(), form.password(), form.authority(), form.role());
 
-        return "redirect:/users/signup";
+        return "redirect:/";
     }
 }

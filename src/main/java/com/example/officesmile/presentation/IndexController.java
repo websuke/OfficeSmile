@@ -1,7 +1,6 @@
 package com.example.officesmile.presentation;
 
 import com.example.officesmile.domain.common.Util;
-import com.example.officesmile.domain.entity.auth.AuthEntity;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +13,9 @@ public class IndexController {
         var principal = Util.getLoggedInUser(session);
 
         // 管理者以上の場合
-        if (principal.getAuthorities().equals(AuthEntity.Authority.SUPER_USER) || principal.getAuthorities().equals(AuthEntity.Authority.ADMIN)) {
-            return "redirect:/sitemap";
-        }
+//        if (principal.getAuthorities().equals(AuthEntity.Authority.SUPER_USER) || principal.getAuthorities().equals(AuthEntity.Authority.ADMIN)) {
+//            return "redirect:/sitemap";
+//        }
 
         // 本日の帰社状況を取得
 
