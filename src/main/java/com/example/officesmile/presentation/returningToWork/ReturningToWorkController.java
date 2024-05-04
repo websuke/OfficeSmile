@@ -3,6 +3,7 @@ package com.example.officesmile.presentation.returningToWork;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -13,14 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ReturningToWorkController {
 
     /**
-     * 初期表示
+     * 初期表示(帰社登録画面表示)
      *
      * @return
      */
     @GetMapping
-    public String initialDisplay(Model model) {
+    public String index(Model model) {
         model.addAttribute("test", "test");
 
-        return "returning-to-work/form";
+        return "returning-to-work/index";
+    }
+
+    @PostMapping
+    public String store() {
+
+        return "redirect:/going-home";
     }
 }
