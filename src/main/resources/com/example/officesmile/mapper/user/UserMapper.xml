@@ -6,11 +6,9 @@
     <!-- ユーザー登録 -->
     <insert id="store" parameterType="com.example.officesmile.domain.entity.user.UserEntity">
         INSERT INTO users (
-            user_name,
-            auth_id
+            user_name
         ) VALUES (
-            #{userName},
-            #{authId}
+            #{userName}
         )
     </insert>
 

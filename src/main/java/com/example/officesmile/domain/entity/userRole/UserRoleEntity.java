@@ -1,14 +1,14 @@
 package com.example.officesmile.domain.entity.userRole;
 
 public record UserRoleEntity (
-  Long userId,
-  Long roleId
+  String userId,
+  String roleId
 ) {
 
-    public static UserRoleEntity toEntity(Long userId, String roleId) {
+    public static UserRoleEntity toEntity(String userId, String roleId) {
         return new UserRoleEntity(
                 userId,
-                Long.parseLong(roleId)
+                roleId
         );
     }
 }

@@ -9,12 +9,14 @@ public class AuthEntity {
     private String authId;
     private String password;
     private Authority authority;
+    private String userId;
 
-    public static AuthEntity toEntity(String authId, String password, String authority) {
+    public static AuthEntity toEntity(String authId, String password, String authority, String userId) {
         return new AuthEntity(
                 authId,
                 password,
-                Authority.valueOf(authority)
+                Authority.valueOf(authority),
+                userId
         );
     }
 

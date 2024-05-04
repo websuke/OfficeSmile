@@ -1,7 +1,7 @@
 package com.example.officesmile.domain.auth;
 
+import com.example.officesmile.Repository.dao.AuthDao;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
-import com.example.officesmile.mapper.auth.AuthMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,11 +19,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
-    private final AuthMapper authMapper;
+    private final AuthDao authDao;
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
-        return Optional.ofNullable(authMapper.findByAuthId(authId))
+        return Optional.ofNullable(authDao.findByAuthId(authId))
                 .map(
                     auth ->
                             new CustomUserDetails(

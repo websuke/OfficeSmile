@@ -2,14 +2,12 @@ package com.example.officesmile.domain.entity.user;
 
 public record UserEntity (
         Long userId,
-        String userName,
-        String authId
+        String userName
 ) {
-    public static UserEntity toEntity(Long userId, String userName, String authId) {
+    public static UserEntity toEntity(Long userId, String userName) {
         return new UserEntity(
                 userId,
-                userName,
-                authId
+                userName
         );
     }
 

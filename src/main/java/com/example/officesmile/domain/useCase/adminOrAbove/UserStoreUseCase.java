@@ -24,12 +24,12 @@ public class UserStoreUseCase {
     public void invoke(String userName, String authId, String password, String authority, String roleId) {
         var encodedPassword = passwordEncoder.encode(password);
 
-        authDao.store(AuthEntity.toEntity(authId, encodedPassword, authority));
-
-        userDao.store(UserEntity.toEntity(null, userName, authId));
+        userDao.store(UserEntity.toEntity(null, userName));
 
         Long maxUserId = userDao.getMaxUserId();
 
-        userRoleDao.store(UserRoleEntity.toEntity(maxUserId, roleId));
+        authDao.store(AuthEntity.toEntity(authId, encodedPassword, authority, maxUserId.toString()));
+
+        userRoleDao.store(UserRoleEntity.toEntity(maxUserId.toString(), roleId));
     }
 }
