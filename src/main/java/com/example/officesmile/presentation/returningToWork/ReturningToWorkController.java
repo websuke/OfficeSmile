@@ -39,6 +39,6 @@ public class ReturningToWorkController {
 
         returningToWorkStoreUseCase.invoke(form.reasonSummaryId(), form.reasonDetail(), loggedInUser.getUserId());
 
-        return "redirect:/going-home";
+        return "redirect:/";
     }
 }

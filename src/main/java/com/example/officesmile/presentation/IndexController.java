@@ -23,7 +23,7 @@ public class IndexController {
         return "redirect:/returning-to-works";
 
         // 上記以外の場合
-//        return 帰宅登録初期表示のメソッド
+//        return "redirect:/going-home";
     }
 
 
