@@ -1,16 +1,16 @@
+-- ユーザーテーブル
+CREATE TABLE users(
+    user_id BIGSERIAL PRIMARY KEY,
+    user_name VARCHAR(256) NOT NULL
+);
+
 -- 認証テーブル
 CREATE TABLE auths(
     auth_id VARCHAR(128) PRIMARY KEY,
     password VARCHAR(128) NOT NULL,
-    authority ENUM('GENERAL', 'ADMIN', 'SUPER_USER') NOT NULL
-);
-
--- ユーザーテーブル
-CREATE TABLE users(
-    user_id BIGSERIAL PRIMARY KEY,
-    user_name VARCHAR(256) NOT NULL,
-    auth_id VARCHAR(128) NOT NULL UNIQUE,
-    FOREIGN KEY (auth_id) REFERENCES auths(auth_id)
+    authority ENUM('GENERAL', 'ADMIN', 'SUPER_USER') NOT NULL,
+    user_id BIGINT UNIQUE NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 -- ロールテーブル
