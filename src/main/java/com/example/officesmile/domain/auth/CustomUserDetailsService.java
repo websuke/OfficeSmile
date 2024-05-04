@@ -29,7 +29,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                             new CustomUserDetails(
                                 auth.getAuthId(),
                                 auth.getPassword(),
-                                toGrantedAuthority(auth.getAuthority())
+                                toGrantedAuthority(auth.getAuthority()),
+                                auth.getUserId()
                             )
                     ).orElseThrow(() -> new UsernameNotFoundException("ログインIDが誤っています。")
                 );
@@ -41,8 +42,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public class CustomUserDetails extends User {
 
-        public CustomUserDetails(String authId, String password, Collection<? extends GrantedAuthority> authorities) {
+        private final String userId;
+
+        public CustomUserDetails(String authId, String password, Collection<? extends GrantedAuthority> authorities, String userId) {
             super(authId, password, authorities);
+            this.userId = userId;
         }
     }
 }
