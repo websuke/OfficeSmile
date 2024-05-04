@@ -1,5 +1,6 @@
 package com.example.officesmile.presentation;
 
+import com.example.officesmile.domain.auth.CustomUserDetailsService;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,10 @@ public class IndexController {
 
     @GetMapping("/")
     public String index() {
-        var auth = getAuth();
-        var test = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var principal = getPrincipal();
 
         // 管理者以上の場合
-        if (auth.equals(AuthEntity.Authority.SUPER_USER) || auth.equals(AuthEntity.Authority.ADMIN)) {
+        if (principal.getAuthorities().equals(AuthEntity.Authority.SUPER_USER) || principal.getAuthorities().equals(AuthEntity.Authority.ADMIN)) {
             return "redirect:/sitemap";
         }
 
@@ -27,7 +27,12 @@ public class IndexController {
 //        return 帰宅登録初期表示のメソッド
     }
 
-    private String getAuth() {
-        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().toList().get(0).toString();
+    /**
+     * ログインユーザーの主要情報取得
+     *
+     * @return
+     */
+    private CustomUserDetailsService.CustomUserDetails getPrincipal() {
+        return (CustomUserDetailsService.CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }

@@ -1,7 +1,6 @@
 package com.example.officesmile.domain.auth;
 
 import com.example.officesmile.Repository.dao.AuthDao;
-import com.example.officesmile.Repository.dao.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final AuthDao authDao;
-    private final UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
