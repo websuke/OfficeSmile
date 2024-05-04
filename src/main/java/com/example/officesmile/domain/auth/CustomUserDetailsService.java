@@ -1,7 +1,7 @@
 package com.example.officesmile.domain.auth;
 
 import com.example.officesmile.Repository.dao.AuthDao;
-import com.example.officesmile.domain.entity.auth.AuthEntity;
+import com.example.officesmile.Repository.dao.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,33 +20,48 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final AuthDao authDao;
+    private final UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
-        return Optional.ofNullable(authDao.findByAuthId(authId))
+
+        return Optional.ofNullable(authDao.userSearchByAuthId(Long.parseLong(authId)))
                 .map(
-                    auth ->
+                        user ->
                             new CustomUserDetails(
-                                auth.getAuthId(),
-                                auth.getPassword(),
-                                toGrantedAuthority(auth.getAuthority()),
-                                auth.getUserId()
+                                user.authId(),
+                                user.password(),
+                                toGrantedAuthority(user.authority()),
+                                user.userId(),
+                                user.userName(),
+                                user.roleName()
                             )
                     ).orElseThrow(() -> new UsernameNotFoundException("ログインIDが誤っています。")
                 );
     }
 
-    private List<GrantedAuthority> toGrantedAuthority(AuthEntity.Authority authority) {
-        return Collections.singletonList(new SimpleGrantedAuthority(authority.name()));
+    private List<GrantedAuthority> toGrantedAuthority(String authority) {
+        return Collections.singletonList(new SimpleGrantedAuthority(authority));
     }
 
     public class CustomUserDetails extends User {
 
         private final String userId;
+        private final String userName;
+        private final String roleName;
 
-        public CustomUserDetails(String authId, String password, Collection<? extends GrantedAuthority> authorities, String userId) {
+
+        public CustomUserDetails(String authId,
+                                 String password,
+                                 Collection<? extends GrantedAuthority> authorities,
+                                 String userId,
+                                 String userName,
+                                 String roleName
+        ) {
             super(authId, password, authorities);
             this.userId = userId;
+            this.userName = userName;
+            this.roleName = roleName;
         }
     }
 }

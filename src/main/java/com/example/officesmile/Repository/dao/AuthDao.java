@@ -1,5 +1,6 @@
 package com.example.officesmile.Repository.dao;
 
+import com.example.officesmile.Repository.dto.UserDTO;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
 import com.example.officesmile.mapper.auth.AuthMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +12,8 @@ public class AuthDao {
 
     private final AuthMapper authMapper;
 
-    public AuthEntity findByAuthId(String authId) {
-        return authMapper.findByAuthId(authId);
+    public UserDTO userSearchByAuthId(Long authId) {
+        return authMapper.userSearchByAuthId(authId);
     };
 
     public Long store(AuthEntity auth) {

@@ -3,17 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.officesmile.mapper.auth.AuthMapper">
-    <!-- 特定のユーザーをIDで検索するSELECT文 -->
-    <select id="findByAuthId" resultType="com.example.officesmile.domain.entity.auth.AuthEntity" parameterType="String">
+    <!-- auth_idを基に特定のユーザーを検索 -->
+    <select id="userSearchByAuthId" resultType="com.example.officesmile.Repository.dto.UserDTO" parameterType="Long">
         SELECT
-            auth_id,
-            password,
-            authority,
-            user_id
+            users.user_id,
+            users.user_name,
+            auths.auth_id,
+            auths.password,
+            auths.authority,
+            roles.role_name
         FROM
             auths
+        INNER JOIN users
+            ON auths.user_id = users.user_id
+        INNER JOIN user_role
+            ON users.user_id = user_role.user_id
+        INNER JOIN roles
+            ON user_role.role_id = roles.role_id
         WHERE
-            auth_id = #{authId}
+            auths.auth_id = #{id}
     </select>
 
     <!-- 登録 -->

@@ -11,6 +11,7 @@ public class IndexController {
     @GetMapping("/")
     public String index() {
         var auth = getAuth();
+        var test = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // 管理者以上の場合
         if (auth.equals(AuthEntity.Authority.SUPER_USER) || auth.equals(AuthEntity.Authority.ADMIN)) {
