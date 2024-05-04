@@ -5,7 +5,7 @@ public record UserForm (
         String password,
         String userName,
         String authority,
-        String role
+        String roleId
 ){
 
 }
