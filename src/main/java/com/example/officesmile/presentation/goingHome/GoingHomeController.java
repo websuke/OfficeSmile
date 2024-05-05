@@ -53,7 +53,7 @@ public class GoingHomeController {
         return "going-home/index";
     }
 
-    @PostMapping("/complete")
+    @PostMapping
     public String store(HttpSession session) {
         var principal = Util.getLoggedInUser(session);
 
