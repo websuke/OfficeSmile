@@ -15,15 +15,16 @@
                 本日もお疲れ様です！！<br>
                 本日の帰社記録をお願いいたします。
             </p>
-            <form th:action="@{/returning-to-works}" method="post">
+            <form th:action="@{/returning-to-works}" method="post" th:object="${returningToWorkForm}">
                 <div class="relative mt-4">
                     <label for="reasonSummaryId" class="leading-7 text-sm text-gray-600">帰社理由</label>
-                    <select name="reasonSummaryId" id="reasonSummaryId" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <select th:field="*{reasonSummaryId}" th:errorclass="border-rose-600" id="reasonSummaryId" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         <option value="1">面談</option>
                         <option value="2">自主学習</option>
                         <option value="3">遊びに来ただけ</option>
                         <option value="4">その他</option>
                     </select>
+                    <p  class="text-red-400" th:if="${#fields.hasErrors('reasonSummaryId')}" th:errors="*{reasonSummaryId}">
                 </div>
                 <div class="relative mt-4">
                     <label for="reasonDetail" class="leading-7 text-sm text-gray-600">詳細(任意)</label>

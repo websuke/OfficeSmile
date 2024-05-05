@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,13 +29,20 @@ public class ReturningToWorkController {
      * @return
      */
     @GetMapping
-    public String index(@ModelAttribute ReturningToWorkForm form, BindingResult result, Model model) {
+    public String index(@ModelAttribute ReturningToWorkForm form, Model model) {
 
         return "returning-to-work/index";
     }
 
     @PostMapping
-    public String store(@SessionAttribute("loggedInUser") CustomUserDetailsService.CustomUserDetails loggedInUser,  @ModelAttribute ReturningToWorkForm form) {
+    public String store(@SessionAttribute("loggedInUser") CustomUserDetailsService.CustomUserDetails loggedInUser,
+                        @Validated @ModelAttribute ReturningToWorkForm form,
+                        BindingResult result,
+                        Model model
+    ) {
+        if (result.hasErrors()) {
+            return index(form, model);
+        }
 
         returningToWorkStoreUseCase.invoke(form.reasonSummaryId(), form.reasonDetail(), loggedInUser.getUserId());
 
