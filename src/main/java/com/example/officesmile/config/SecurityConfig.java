@@ -27,7 +27,10 @@ public class SecurityConfig {
                         .usernameParameter("authId")                                  // username -> authId に変更
                         .permitAll()                                                  // 認証無しでアクセス可能
                 )
-                .logout((logout) -> logout.permitAll())                               // ログアウト処理のPOST /logout は認証無しでアクセス可能
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")                                         // ログアウト処理のURLはPOST /logout
+                        .logoutSuccessUrl("/login?logout")                            // ログアウト後のURLは /login?logout
+                        .permitAll())                                                 // 認証無しでアクセス可能
                 .authorizeHttpRequests((requests) -> requests                         // URL毎の認可設定を開始する
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).hasAuthority("SUPER_USER") // "/h2-console**" へはスーパーユーザー権限のみがアクセス可能
                         .requestMatchers("css/**").permitAll()               // CSSへの認証も不要

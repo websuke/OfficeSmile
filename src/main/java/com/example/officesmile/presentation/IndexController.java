@@ -31,7 +31,7 @@ public class IndexController {
                 )
         );
 
-        // 帰社していない もしくは 一度帰社したが帰宅登録も既に一度行われている場合、帰社登録画面へリダイレクト
+        // 帰社していない もしくは 一度帰社したが紐づく帰宅登録も既に行われている場合、帰社登録画面へリダイレクト
         if (newReturningToWorkAndHome == null || newReturningToWorkAndHome.goingHomeId() != null) {
 
             return "redirect:/returning-to-works";

@@ -5,24 +5,35 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>帰社登録</title>
+    <title>帰宅登録</title>
 </head>
 <body>
 <main>
     <div class="container mx-auto flex">
+        <div th:text="${message}"></div>
         <div class="md:w-1/2 p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10">
             <p class="text-xl text-center">
-                帰社登録ありがとうございます。<br>
-                ログアウトしてからごゆっくりとお過ごしください。
+                帰社登録ありがとうございました。
+            </p>
+
+            <p th:text="'帰社した時間は' + ${returningToWorkTime} + 'です！'" class="text-xl text-center">(帰社日時)</p>
+
+            <p class="text-xl text-center mt-4">
+                これから滞在する方はログアウトして<br>
+                ごゆっくりお過ごし下さい。<br>
             </p>
             <p class="text-xl text-center mt-4">
-                お帰りの際はお手数ですが<br>
-                帰宅登録をお願いいたします。
+                お帰りの方はお手数ですが帰宅登録をお願いいたします。
             </p>
-            <form th:action="@{/going-homes}" method="post">
-                <button class="block text-white bg-indigo-500 border-0 py-2 w-1/3 mt-6 mx-auto px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">帰宅</button>
-            </form>
         </div>
+    </div>
+    <div class="flex justify-center">
+        <form th:action="@{/logout}" method="post">
+            <button class="block text-white bg-stone-400 border-0 py-2 min-w-40 w-1/3 mt-6 mx-auto px-6 focus:outline-none hover:bg-stone-500 rounded text-lg">ログアウト</button>
+        </form>
+        <form th:action="@{/going-homes/complete}" method="post" class="ml-8">
+            <button class="block text-white bg-indigo-500 border-0 py-2 min-w-40 w-1/3 mt-6 mx-auto px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">帰宅登録</button>
+        </form>
     </div>
 </main>
 </body>

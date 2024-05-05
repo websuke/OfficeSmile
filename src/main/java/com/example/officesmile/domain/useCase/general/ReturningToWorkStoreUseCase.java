@@ -4,6 +4,7 @@ import com.example.officesmile.domain.entity.returningToWork.ReturningToWorkEnti
 import com.example.officesmile.infrastructure.dao.ReturningToWorkDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 帰社登録シナリオ
@@ -14,6 +15,7 @@ public class ReturningToWorkStoreUseCase {
 
     private final ReturningToWorkDao returningToWorkDao;
 
+    @Transactional
     public void invoke(String reasonSummaryId, String reasonDetail, String userId) {
         returningToWorkDao.store(
                 ReturningToWorkEntity.toEntity(
