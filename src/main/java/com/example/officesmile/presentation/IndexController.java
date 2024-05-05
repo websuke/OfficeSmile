@@ -37,6 +37,6 @@ public class IndexController {
         }
 
         // 上記以外の場合、帰宅登録画面へリダイレクト
-        return "redirect:/going-home";
+        return "redirect:/going-homes";
     }
 }
