@@ -25,12 +25,20 @@ public class AuthEntity {
         ADMIN("管理者"),
         SUPER_USER("スーパーユーザー");
 
+        /**
+         * 和名
+         */
         private final String name;
 
         private Authority(String name) {
             this.name = name;
         }
 
+        /**
+         * 和名取得
+         *
+         * @return
+         */
         public String getName() {
             return this.name;
         }

@@ -41,6 +41,12 @@ public class IndexController {
         return "redirect:/going-homes";
     }
 
+    /**
+     * 権限取得
+     *
+     * @param principal
+     * @return
+     */
     private String getAuthority(CustomUserDetailsService.CustomUserDetails principal) {
 
         return principal.getAuthorities().toArray()[0].toString();
