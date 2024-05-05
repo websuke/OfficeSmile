@@ -17,4 +17,26 @@
             #{userId}
         )
     </insert>
+
+    <!-- 帰社・帰宅最新状況取得 -->
+    <select id="getReturningToWorkAndHomeNewStatus" resultType="com.example.officesmile.infrastructure.dto.ReturningToWorkAndHomeDTO" parameterType="Long">
+        SELECT
+            main.returning_to_work_id returningToWorkId,
+            main.reason_summary_id reasonSummaryId,
+            main.reason_detail reasonDetail,
+            main.date_time returningToWorkDateTime,
+            main.user_id userId,
+            sub.going_home_id goingHomeId,
+            sub.date_time goingHomeDateTime
+        FROM
+            returning_to_works main
+        LEFT JOIN going_homes sub
+            ON main.returning_to_work_id = sub.returning_to_work_id
+        WHERE
+            main.user_id = #{userId}
+            AND DATE_TRUNC('day', main.date_time) = CURRENT_DATE
+        ORDER BY
+            main.returning_to_work_id DESC
+        LIMIT 1;
+    </select>
 </mapper>

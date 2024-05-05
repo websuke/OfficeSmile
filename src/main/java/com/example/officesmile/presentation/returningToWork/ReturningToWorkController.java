@@ -30,7 +30,6 @@ public class ReturningToWorkController {
     @GetMapping
     public String index(@ModelAttribute ReturningToWorkForm form, BindingResult result, Model model) {
 
-
         return "returning-to-work/index";
     }
 
