@@ -28,5 +28,7 @@ const fadeOut = function() {
 
 const elem = document.querySelector("#flashMessage")
 if (elem !== null) {
-    fadeOut(elem, 5000)
+    setTimeout(() => {
+        fadeOut(elem, 2000)
+    }, 2000)
 }
