@@ -32,6 +32,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
 
+        if (authId.isEmpty()) {
+            throw new UsernameNotFoundException("ログインIDが誤っています。");
+        }
+
         return Optional.ofNullable(authDao.userSearchByAuthId(Long.parseLong(authId)))
                 .map(
                         user ->
