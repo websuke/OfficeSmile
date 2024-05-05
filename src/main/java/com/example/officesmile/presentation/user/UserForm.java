@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 public record UserForm (
         @NotBlank
         @Size(max = 128)
+        @Pattern(regexp = "^[0-9a-zA-Z]+$", message = "英数字のみが許可されています。")
         String authId,
         @NotBlank
         @Size(max = 128)

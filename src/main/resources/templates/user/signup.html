@@ -15,29 +15,29 @@
                 <div class="md:w-1/2 p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10">
                     <div class="relative mt-6">
                         <label for="authId" class="leading-7 text-sm text-gray-600">ログインID</label>
-                        <input type="text" id="authId" name="authId" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="text" id="authId" th:field="*{authId}" th:errorclass="border-rose-600" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         <p  class="text-red-400" th:if="${#fields.hasErrors('authId')}" th:errors="*{authId}">
                     </div>
                     <div class="relative mt-4">
                         <label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
-                        <input type="password" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="password" id="password" th:field="*{password}" th:errorclass="border-rose-600" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         <p  class="text-red-400" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                     </div>
                     <div class="relative mt-4">
                         <label for="userName" class="leading-7 text-sm text-gray-600">ユーザー名</label>
-                        <input type="text" id="userName" name="userName" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="text" id="userName" th:field="*{userName}" th:errorclass="border-rose-600" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         <p  class="text-red-400" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">
                     </div>
                     <div class="relative mt-4">
                         <label for="authority" class="leading-7 text-sm text-gray-600">権限</label>
-                        <select name="authority" id="authority" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <select th:field="*{authority}" id="authority" th:errorclass="border-rose-600" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             <option th:each="auth : ${authPullDown}" th:value="${auth.key}" th:text="${auth.value}">(権限名)</option>
                         </select>
                         <p  class="text-red-400" th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}">
                     </div>
                     <div class="relative mt-4">
                         <label for="roleId" class="leading-7 text-sm text-gray-600">役職</label>
-                        <select name="roleId" id="roleId" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <select th:field="*{roleId}" id="roleId" th:errorclass="border-rose-600" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-3 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             <option th:each="role : ${rolePullDown}" th:value="${role.roleId}" th:text="${role.roleName}">(役職名)</option>
                         </select>
                         <p  class="text-red-400" th:if="${#fields.hasErrors('roleId')}" th:errors="*{roleId}">

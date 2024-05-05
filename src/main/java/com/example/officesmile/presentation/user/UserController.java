@@ -31,10 +31,10 @@ public class UserController {
     }
 
     @PostMapping
-    public String store(@Validated @ModelAttribute UserForm form, BindingResult result) {
+    public String store(@Validated @ModelAttribute UserForm form, BindingResult result, Model model) {
         if (result.hasErrors()) {
 
-            return "/user/signup";
+            return showSignUpForm(form, model);
         }
 
         userStoreUseCase.invoke(form.userName(), form.authId(), form.password(), form.authority(), form.roleId());
