@@ -9,8 +9,10 @@
 </head>
 <body>
 <main>
+    <div th:if="${message}" id="flashMessage" class="w-1/4 absolute z-20 -translate-x-1/2 inset-x-2/4 top-4">
+        <p th:text="${message}" class="bg-red-300 text-white rounded p-5 text-center"></p>
+    </div>
     <div class="container mx-auto flex">
-        <div th:text="${message}"></div>
         <div class="md:w-1/2 p-8 flex flex-col mx-auto w-full mt-10 md:mt-0 relative z-10">
             <p class="text-xl text-center">
                 帰社登録ありがとうございました。
