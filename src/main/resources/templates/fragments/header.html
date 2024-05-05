@@ -8,7 +8,7 @@
 </head>
 <body>
 <header class="bg-slate-50" th:fragment="header">
-    <div class="flex justify-between w-1/2 mx-auto p-5">
+    <div class="flex justify-between w-4/5 lg:w-1/2 mx-auto p-5">
         <div class="flex">
             <h1><a th:href="@{/}">OfficeSmile</a></h1>
             <nav class="ml-10 text-gray-400" th:if="${#authorization.expression('isAuthenticated()')}">
