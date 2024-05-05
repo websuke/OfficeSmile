@@ -17,6 +17,13 @@ public class SecurityConfig {
 
     private final CustomSuccessHandler successHandler;
 
+    /**
+     * セキュリティ設定
+     *
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -51,6 +58,11 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * 使用するパスワード暗号化技術をBean登録
+     *
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return SCryptPasswordEncoder.defaultsForSpringSecurity_v5_8();

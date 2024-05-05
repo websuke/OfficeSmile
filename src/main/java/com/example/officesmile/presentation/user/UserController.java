@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * ユーザーコントローラー
+ */
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -22,6 +25,13 @@ public class UserController {
     private final RolePullDownGetUseCase rolePullDownGetUseCase;
     private final AuthPullDownGetUseCase authPullDownGetUseCase;
 
+    /**
+     * ユーザー作成画面表示
+     *
+     * @param form
+     * @param model
+     * @return
+     */
     @GetMapping("/signup")
     public String showSignUpForm(@ModelAttribute UserForm form, Model model) {
         model.addAttribute("rolePullDown", rolePullDownGetUseCase.invoke());
@@ -30,6 +40,14 @@ public class UserController {
         return "/user/signup";
     }
 
+    /**
+     * ユーザー作成処理
+     *
+     * @param form
+     * @param result
+     * @param model
+     * @return
+     */
     @PostMapping
     public String store(@Validated @ModelAttribute UserForm form, BindingResult result, Model model) {
         if (result.hasErrors()) {

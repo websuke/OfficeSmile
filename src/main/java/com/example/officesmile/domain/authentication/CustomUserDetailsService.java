@@ -20,6 +20,15 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
     private final AuthDao authDao;
 
+    /**
+     * ログイン処理時にSpringSecurityによって実行されるメソッド
+     *
+     * 当該メソッドで取得したUserを基にログインの可否が判定される。
+     *
+     * @param authId
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String authId) throws UsernameNotFoundException {
 
@@ -38,14 +47,31 @@ public class CustomUserDetailsService implements UserDetailsService {
                 );
     }
 
+    /**
+     * 権限型変換
+     *
+     * @param authority
+     * @return
+     */
     private List<GrantedAuthority> toGrantedAuthority(String authority) {
         return Collections.singletonList(new SimpleGrantedAuthority(authority));
     }
 
+    /**
+     * 自作UserDetailsクラス
+     *
+     * UserDetailsを実現しているUserを継承しているためカスタムした情報を持たせたうえでUserDetailsとして使用可能となる。
+     */
     public class CustomUserDetails extends User {
 
         private final String userId;
         private final String userName;
+
+        /**
+         * 役職名
+         *
+         * 練習のため追加したが現在未使用。
+         */
         private final String roleName;
 
 
@@ -66,6 +92,13 @@ public class CustomUserDetailsService implements UserDetailsService {
             return userId;
         }
 
+        /**
+         * ユーザー名取得
+         *
+         * 本メソッドはバックエンドでは使ってないがThymeleaf側で使用しているため削除する際は注意
+         *
+         * @return
+         */
         public String getUserName() {
             return userName;
         }

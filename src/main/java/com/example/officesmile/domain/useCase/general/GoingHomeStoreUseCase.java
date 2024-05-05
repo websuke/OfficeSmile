@@ -4,6 +4,9 @@ import com.example.officesmile.infrastructure.dao.GoingHomeDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * 帰宅登録シナリオ
+ */
 @Service
 @RequiredArgsConstructor
 public class GoingHomeStoreUseCase {

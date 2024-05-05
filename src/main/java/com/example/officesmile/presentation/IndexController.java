@@ -15,6 +15,14 @@ public class IndexController {
 
     private final ReturningToWorkAndHomeNewStatusGetUseCase returningToWorkAndHomeNewStatusGetUseCase;
 
+    /**
+     * 起点
+     *
+     * 権限及び状態に応じてハンドリング先を分岐する。
+     *
+     * @param session
+     * @return
+     */
     @GetMapping("/")
     public String index(HttpSession session) {
         var principal = Util.getLoggedInUser(session);

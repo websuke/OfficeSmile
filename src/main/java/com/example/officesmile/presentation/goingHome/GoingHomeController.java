@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * 帰宅コントローラー
+ */
 @Controller
 @RequestMapping("/going-homes")
 @RequiredArgsConstructor
@@ -20,6 +23,14 @@ public class GoingHomeController {
     private final ReturningToWorkAndHomeNewStatusGetUseCase returningToWorkAndHomeNewStatusGetUseCase;
     private final GoingHomeStoreUseCase goingHomeStoreUseCase;
 
+    /**
+     * 帰宅登録画面初期表示
+     *
+     * @param session
+     * @param model
+     * @param redirectAttributes
+     * @return
+     */
     @GetMapping
     public String index(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         // 本日の帰社・帰宅最新状況を取得

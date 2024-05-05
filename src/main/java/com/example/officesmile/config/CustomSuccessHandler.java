@@ -13,6 +13,18 @@ import java.io.IOException;
 
 @Component
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
+
+    /**
+     * ログイン成功時カスタムハンドラー
+     *
+     * ログイン成功後、ログインユーザー情報をセッションに保存した上で、GET / に強制リダイレクトさせる。
+     *
+     * @param req
+     * @param res
+     * @param auth
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth) throws IOException, ServletException {
         // ログインユーザー情報をsessionに登録

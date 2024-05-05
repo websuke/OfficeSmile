@@ -3,8 +3,11 @@ package com.example.officesmile.domain.entity.auth;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@AllArgsConstructor
+/**
+ * 権限エンティティ
+ */
 @Data
+@AllArgsConstructor
 public class AuthEntity {
     private String authId;
     private String password;
@@ -44,3 +47,4 @@ public class AuthEntity {
         }
     }
 }
+

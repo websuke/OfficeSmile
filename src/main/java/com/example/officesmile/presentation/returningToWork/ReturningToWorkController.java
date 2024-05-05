@@ -26,7 +26,7 @@ public class ReturningToWorkController {
     private final ReturningToWorkAndHomeNewStatusGetUseCase returningToWorkAndHomeNewStatusGetUseCase;
 
     /**
-     * 初期表示(帰社登録画面表示)
+     * 帰社登録画面初期表示
      *
      * @param loggedInUser ログインユーザー
      * @param form フォーム
@@ -58,7 +58,7 @@ public class ReturningToWorkController {
     }
 
     /**
-     * 帰宅登録処理
+     * 帰社登録処理
      *
      * @param loggedInUser ログインユーザー
      * @param form フォーム

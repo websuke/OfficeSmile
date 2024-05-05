@@ -1,5 +1,10 @@
 package com.example.officesmile.domain.entity.userRole;
 
+/**
+ * ユーザー×ロールエンティティ
+ * @param userId
+ * @param roleId
+ */
 public record UserRoleEntity (
   Long userId,
   Long roleId
