@@ -1,6 +1,5 @@
 package com.example.officesmile.domain.useCase.all;
 
-import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.entity.returningToWork.ReturningToWorkEntity;
 import com.example.officesmile.infrastructure.dao.ReturningToWorkDao;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ public class ReturningToWorkStoreUseCase {
                     null,
                     Long.parseLong(reasonSummaryId),
                     reasonDetail,
-                    Util.now(),
                     Long.parseLong(userId)
                 )
         );
