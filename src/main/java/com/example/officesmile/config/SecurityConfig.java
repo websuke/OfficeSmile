@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests                         // URL毎の認可設定を開始する
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // "/h2-console**" へはログインなしでもアクセス可能 ※開発環境のみとする必要あり
                         .requestMatchers("css/**").permitAll()               // CSSへの認証も不要
+                        .requestMatchers("users/**").hasAnyAuthority("ADMIN", "SUPER_USER") // users/** へは管理者権限以上のみがアクセス可能
                         .anyRequest().authenticated()                                 // その他のURLへはログイン後アクセス可能
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
