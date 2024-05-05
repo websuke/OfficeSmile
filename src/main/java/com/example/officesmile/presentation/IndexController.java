@@ -1,5 +1,6 @@
 package com.example.officesmile.presentation;
 
+import com.example.officesmile.domain.authentication.CustomUserDetailsService;
 import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.entity.auth.AuthEntity;
 import com.example.officesmile.domain.useCase.adminOrAbove.ReturningToWorkAndHomeNewStatusGetUseCase;
@@ -19,8 +20,8 @@ public class IndexController {
         var principal = Util.getLoggedInUser(session);
 
         // 管理者以上の場合、xxへリダイレクト
-        if (principal.getAuthorities().equals(AuthEntity.Authority.SUPER_USER) || principal.getAuthorities().equals(AuthEntity.Authority.ADMIN)) {
-            return "redirect:/sitemap";
+        if (getAuthority(principal).equals(AuthEntity.Authority.ADMIN.name()) || getAuthority(principal).equals(AuthEntity.Authority.SUPER_USER.name())) {
+            return "redirect:/users/signup";
         }
 
         // 本日の帰社・帰宅最新状況を取得
@@ -38,5 +39,10 @@ public class IndexController {
 
         // 上記以外の場合、帰宅登録画面へリダイレクト
         return "redirect:/going-homes";
+    }
+
+    private String getAuthority(CustomUserDetailsService.CustomUserDetails principal) {
+
+        return principal.getAuthorities().toArray()[0].toString();
     }
 }

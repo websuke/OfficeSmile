@@ -1,4 +1,4 @@
-package com.example.officesmile.domain.useCase.all;
+package com.example.officesmile.domain.useCase.general;
 
 import com.example.officesmile.domain.entity.returningToWork.ReturningToWorkEntity;
 import com.example.officesmile.infrastructure.dao.ReturningToWorkDao;

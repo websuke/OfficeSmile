@@ -2,7 +2,7 @@ package com.example.officesmile.presentation.goingHome;
 
 import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.useCase.adminOrAbove.ReturningToWorkAndHomeNewStatusGetUseCase;
-import com.example.officesmile.domain.useCase.all.GoingHomeStoreUseCase;
+import com.example.officesmile.domain.useCase.general.GoingHomeStoreUseCase;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

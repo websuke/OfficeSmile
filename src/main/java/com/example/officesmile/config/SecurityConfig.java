@@ -31,7 +31,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests                         // URL毎の認可設定を開始する
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).hasAuthority("SUPER_USER") // "/h2-console**" へはスーパーユーザー権限のみがアクセス可能
                         .requestMatchers("css/**").permitAll()               // CSSへの認証も不要
-                        .requestMatchers("users/**").hasAnyAuthority("ADMIN", "SUPER_USER") // users/** へは管理者権限以上のみがアクセス可能
+                        .requestMatchers("users/**").hasAnyAuthority("ADMIN", "SUPER_USER") // ユーザー関連の操作は管理者権限以上のみが可能
+                        .requestMatchers("returning-to-works").hasAuthority("GENERAL") // 帰社登録は一般ユーザーのみ可能
+                        .requestMatchers("going-homes/**").hasAuthority("GENERAL") // 帰宅登録は一般ユーザーのみ可能
                         .anyRequest().authenticated()                                 // その他のURLへはログイン後アクセス可能
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
