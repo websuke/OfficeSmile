@@ -1,5 +1,6 @@
 package com.example.officesmile.presentation.goingHome;
 
+import com.example.officesmile.config.MultiMessageSource;
 import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.useCase.adminOrAbove.ReturningToWorkAndHomeNewStatusGetUseCase;
 import com.example.officesmile.domain.useCase.general.GoingHomeStoreUseCase;
@@ -26,7 +27,10 @@ public class GoingHomeController {
     private final LogoutController logoutController;
 
     private final ReturningToWorkAndHomeNewStatusGetUseCase returningToWorkAndHomeNewStatusGetUseCase;
+
     private final GoingHomeStoreUseCase goingHomeStoreUseCase;
+
+    private final MultiMessageSource messageSource;
 
     /**
      * 帰宅登録画面初期表示
@@ -48,7 +52,9 @@ public class GoingHomeController {
         // 帰社していない もしくは 一度帰社したが紐づく帰宅登録も既に行われている場合、帰社登録画面へリダイレクト
         if (newReturningToWorkAndHome == null || newReturningToWorkAndHome.goingHomeId() != null) {
 
-            redirectAttributes.addFlashAttribute("message", "帰社登録を実施してからでないと帰宅登録は出来ません。");
+            var test = messageSource.getMessage("must_return_to_work");
+
+            redirectAttributes.addFlashAttribute("message", messageSource.getMessage("must_return_to_work"));
 
             return "redirect:/returning-to-works";
         }
