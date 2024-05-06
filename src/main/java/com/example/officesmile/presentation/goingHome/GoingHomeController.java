@@ -3,6 +3,9 @@ package com.example.officesmile.presentation.goingHome;
 import com.example.officesmile.domain.common.Util;
 import com.example.officesmile.domain.useCase.adminOrAbove.ReturningToWorkAndHomeNewStatusGetUseCase;
 import com.example.officesmile.domain.useCase.general.GoingHomeStoreUseCase;
+import com.example.officesmile.presentation.auth.LogoutController;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/going-homes")
 @RequiredArgsConstructor
 public class GoingHomeController {
+
+    private final LogoutController logoutController;
 
     private final ReturningToWorkAndHomeNewStatusGetUseCase returningToWorkAndHomeNewStatusGetUseCase;
     private final GoingHomeStoreUseCase goingHomeStoreUseCase;
@@ -53,8 +58,16 @@ public class GoingHomeController {
         return "going-home/index";
     }
 
+    /**
+     * 帰宅登録処理
+     *
+     * @param session
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping
-    public String store(HttpSession session) {
+    public String store(HttpSession session, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         var principal = Util.getLoggedInUser(session);
 
         // 本日の帰社・帰宅最新状況を取得
@@ -66,6 +79,6 @@ public class GoingHomeController {
 
         goingHomeStoreUseCase.store(Long.parseLong(newReturningToWorkAndHome.returningToWorkId()));
 
-        return "going-home/complete";
+        return logoutController.logout(request, response, redirectAttributes);
     }
 }

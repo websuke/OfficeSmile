@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja"
       xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main}, _)}"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main}, ~{::script})}"
 >
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,10 @@
 </head>
 <body>
 <main>
-    <div th:if="${param.error}" id="flashMessage" class="w-1/4 absolute z-20 -translate-x-1/2 inset-x-2/4 top-4">
+    <div th:if="${message}" id="flashMessage" class="w-1/4 absolute z-20 -translate-x-1/2 inset-x-2/4 top-4">
+        <p th:text="${message}" class="bg-red-300 text-white rounded p-5 text-center"></p>
+    </div>
+    <div th:if="${param.error}" id="loginErrorMessage" class="w-1/4 absolute z-20 -translate-x-1/2 inset-x-2/4 top-4">
         <p class="bg-red-300 text-white rounded p-5 text-center">ログインIDまたはパスワードが違います。</p>
     </div>
     <form th:action="@{/login}" method="post">
@@ -28,5 +31,13 @@
         </div>
     </form>
 </main>
+<script>
+    const loginErrorMessage = document.querySelector("#loginErrorMessage")
+    if (loginErrorMessage !== null) {
+        setTimeout(() => {
+            fadeOut(loginErrorMessage, 2000)
+        }, 2000)
+    }
+</script>
 </body>
 </html>
