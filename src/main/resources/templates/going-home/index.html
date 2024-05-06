@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja"
       xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main}, _)}"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main}, ~{::script})}"
 >
 <head>
     <meta charset="UTF-8">
@@ -18,9 +18,12 @@
                 帰社登録ありがとうございました。
             </p>
 
-            <p th:text="'帰社した時間は' + ${returningToWorkTime} + 'です！'" class="text-xl text-center">(帰社日時)</p>
+            <p class="text-xl text-center mt-8">
+                帰社日時は<span id="initialTime" th:text="${returningToWorkTime}">(帰社日時)</span><br>
+                現在の滞在時間は<span id="elapsedTime"></span>です。
+            </p>
 
-            <p class="text-xl text-center mt-4">
+            <p class="text-xl text-center mt-8">
                 これから滞在する方はログアウトして<br>
                 ごゆっくりお過ごし下さい。<br>
             </p>
@@ -38,5 +41,80 @@
         </form>
     </div>
 </main>
+<script>
+    /**
+     * 指定された日時を "YYYY/MM/DD HH:mm:ss" 形式にフォーマットする関数。
+     * @param {Date} date - フォーマットする日時。
+     * @returns {string} フォーマットされた日時文字列。
+     */
+    const formatDateTime = function (date) {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const seconds = String(date.getSeconds()).padStart(2, '0')
+
+        return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`
+    }
+
+    /**
+     * 指定された秒数を "時間 分 秒" 形式にフォーマットする関数。
+     * @param {number} seconds - フォーマットする秒数。
+     * @returns {string} フォーマットされた経過時間文字列。
+     */
+    function formatElapsedTime(seconds) {
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.floor((seconds % 3600) / 60)
+        const remainingSeconds = seconds % 60
+
+        let formattedTime = ''
+        if (hours > 0) {
+            formattedTime += hours + ' 時間 '
+        }
+        if (minutes > 0) {
+            formattedTime += minutes + ' 分 '
+        }
+        formattedTime += remainingSeconds + ' 秒'
+
+        return formattedTime.trim()
+    }
+
+    /**
+     * 2つの日時の差を秒単位で計算する関数。
+     * @param {string} startDate - 開始日時（YYYY/MM/DD HH:mm:ss 形式の文字列）。
+     * @param {string} endDate - 終了日時（YYYY/MM/DD HH:mm:ss 形式の文字列）。
+     * @returns {number} 日時の差（秒単位）。
+     */
+    const calculateElapsedSecond = function (startDate, endDate) {
+        // 日付文字列をDateオブジェクトに変換
+        const startDateTime = new Date(startDate)
+        const endDateTime = new Date(endDate)
+
+        // ミリ秒単位の差分を計算
+        const difference = endDateTime - startDateTime
+
+        // ミリ秒を秒単位に変換して返却
+        return Math.floor(difference / 1000)
+    }
+
+    // HTML要素の取得
+    let initialTimeElement = document.getElementById('initialTime')
+    let elapsedTimeElement = document.getElementById('elapsedTime')
+
+    // 初期日時を取得し、表示形式を変換して表示
+    initialTimeElement.textContent = formatDateTime(new Date(initialTimeElement.textContent))
+
+    // 1秒ごとに経過時間を更新して表示
+    setInterval(function() {
+        elapsedTimeElement.textContent = formatElapsedTime(
+            calculateElapsedSecond(
+                initialTimeElement.textContent,
+                formatDateTime(new Date())
+            )
+        )
+    }, 1000)
+
+</script>
 </body>
 </html>
